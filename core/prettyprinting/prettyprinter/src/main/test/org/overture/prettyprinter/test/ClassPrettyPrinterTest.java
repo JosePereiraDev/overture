@@ -10,6 +10,8 @@ import org.overture.ast.lex.Dialect;
 import org.overture.ast.modules.AModuleModules;
 import org.overture.config.Release;
 import org.overture.config.Settings;
+import org.overture.prettyprinter.PrettyPrinterEnv;
+import org.overture.prettyprinter.PrettyPrinterVisitor;
 import org.overture.typechecker.util.TypeCheckerUtil;
 import org.overture.typechecker.util.TypeCheckerUtil.TypeCheckResult;
 
@@ -27,7 +29,7 @@ public class ClassPrettyPrinterTest {
 	@Test
 	public void Test() throws AnalysisException
 	{
-		File f = new File("src/test/resources/classValues");
+		File f = new File("src/test/resources/values");
 		
 		pogSL(f);
 	}
@@ -38,10 +40,18 @@ public class ClassPrettyPrinterTest {
 		System.out.println("Processing " + file);
 		
 		TypeCheckResult<List<AModuleModules>> TC = TypeCheckerUtil.typeCheckSl(file);
+		
+		
+		
 		assertTrue("Specification has syntax errors", TC.parserResult.errors.isEmpty());
 		assertTrue("Specification has type errors", TC.errors.isEmpty());
 		
-
+		for (AModuleModules module : TC.parserResult.result) {
+			String result = module.apply(new PrettyPrinterVisitor(), new PrettyPrinterEnv());
+			
+			System.out.println(result);
+		}
+		
 
 		return "";
 	}

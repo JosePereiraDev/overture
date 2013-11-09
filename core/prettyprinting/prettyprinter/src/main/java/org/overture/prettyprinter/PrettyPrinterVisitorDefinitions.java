@@ -16,6 +16,7 @@ import org.overture.ast.definitions.AValueDefinition;
 import org.overture.ast.definitions.PDefinition;
 import org.overture.ast.expressions.AUndefinedExp;
 import org.overture.ast.expressions.PExp;
+import org.overture.ast.modules.AModuleModules;
 import org.overture.ast.node.INode;
 import org.overture.ast.patterns.PPattern;
 import org.overture.ast.statements.PStm;
@@ -35,6 +36,16 @@ public class PrettyPrinterVisitorDefinitions extends
 	private static final long serialVersionUID = 5018749137104836194L;
 	final static TypePrettyPrinterVisitor typePrinter = new TypePrettyPrinterVisitor();
 
+	@Override
+	public String caseAModuleModules(AModuleModules node,
+			PrettyPrinterEnv question) throws AnalysisException {
+		
+		StringBuffer sb = new StringBuffer();
+		
+		
+		return sb.toString();
+	}
+	
 	@Override
 	public String caseAClassClassDefinition(AClassClassDefinition node,
 			PrettyPrinterEnv question) throws AnalysisException
